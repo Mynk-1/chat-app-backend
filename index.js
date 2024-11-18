@@ -31,6 +31,10 @@ app.use('/api', authRoutes);
 app.use('/api',addContact);
 app.use('/api',conversationRouter);
 
+app.get("/",(req,res)=>{
+     res.json({succes:"server started successfully"})
+})
+
 // Socket.io handling
 socketHandler(io);
 
