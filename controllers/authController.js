@@ -6,6 +6,7 @@ exports.loginOrRegister = async (req, res) => {
 
   try {
     // Check if the user already exists
+    console.log(phoneNumber)
     let user = await User.findOne({ phoneNumber });
     
     // If the user does not exist, create a new one

@@ -20,7 +20,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://chat-app-liard-two.vercel.app', // Replace with your frontend URL
+  origin: 'https://chat-app-mu-plum-19.vercel.app', // Replace with your frontend URL
   credentials: true
 }));
 app.use(express.json());
