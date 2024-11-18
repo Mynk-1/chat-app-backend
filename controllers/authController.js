@@ -19,7 +19,7 @@ exports.loginOrRegister = async (req, res) => {
 
     // Generate token and set cookie
     const token = generateToken(user._id);
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie('token', token, { httpOnly: true ,secure: process.env.NODE_ENV === 'production',sameSite: 'None'});
 
     res.json({
       success: true,
