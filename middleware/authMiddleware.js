@@ -3,7 +3,7 @@ const { verifyToken } = require('../utils/jwtUtils');
 const User = require('../models/User');
 
 const authenticate = async (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.vercel-feature-flags;
   if (!token) return res.status(401).json({ message: 'Unauthorized' });
 
   try {
