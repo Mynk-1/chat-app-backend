@@ -6,9 +6,9 @@ exports.loginOrRegister = async (req, res) => {
 
   try {
     // Check if the user already exists
-    console.log(phoneNumber)
+    console.log(phoneNumber);
     let user = await User.findOne({ phoneNumber });
-    
+
     // If the user does not exist, create a new one
     let isNewUser = false;
     if (!user) {
@@ -17,28 +17,26 @@ exports.loginOrRegister = async (req, res) => {
       await user.save();
     }
 
-    // Generate token and set cookie
+    // Generate token
     const token = generateToken(user._id);
-    res.cookie('token', token, { httpOnly: true,
-      secure: true,
-      sameSite: 'Strict',
-      maxAge: 3600000 
-    });
 
+    // Send the token in the response body
     res.json({
       success: true,
       message: isNewUser ? 'Registered successfully' : 'Logged in successfully',
+      token,  // Return the token in the response body
       user
     });
 
   } catch (error) {
     console.error('Auth error:', error);
-    res.status(500).json({ 
-      success: false, 
-      message: 'Login failed' 
+    res.status(500).json({
+      success: false,
+      message: 'Login failed'
     });
   }
 };
+
 
 exports.getProfile = (req, res) => {
   // Ensure req.user exists
