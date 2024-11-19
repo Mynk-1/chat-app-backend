@@ -19,10 +19,14 @@ exports.loginOrRegister = async (req, res) => {
 
     // Generate token and set cookie
     const token = generateToken(user._id);
-    res.cookie('token', token, { httpOnly: true,
-      secure: true,
-      sameSite: 'Strict',
-      maxAge: 3600000 });
+    res.cookie('token', token, {
+      httpOnly: true,  // Prevents access to the cookie via JavaScript (helps prevent XSS attacks)
+      secure: process.env.NODE_ENV === 'production',  // Use secure cookies in production (HTTPS)
+      sameSite: 'Strict',  // SameSite=Lax or Strict restricts cross-site requests (protects from CSRF)
+      maxAge: 3600000,  // Cookie expiration time (1 hour in milliseconds)
+      // The cookie will only be available to this subdomain unless both frontend and backend are on the same domain
+      domain: '.onrender.com',  // This is for all subdomains of onrender.com (e.g., frontend.onrender.com)
+    });
 
     res.json({
       success: true,
