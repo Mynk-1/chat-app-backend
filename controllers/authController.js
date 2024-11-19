@@ -21,7 +21,8 @@ exports.loginOrRegister = async (req, res) => {
     const token = generateToken(user._id);
     res.cookie('token', token, { httpOnly: true,
       secure: true,
-      sameSite: 'Strict' });
+      sameSite: 'Strict',
+      maxAge: 3600000 });
 
     res.json({
       success: true,
