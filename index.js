@@ -20,7 +20,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://chat-app-mu-plum-19.vercel.app', // Replace with your frontend URL
+  origin: 'https://chat-app-qxcg.onrender.com', // Replace with your frontend URL
   credentials: true
 }));
 app.use(express.json());
@@ -30,10 +30,6 @@ app.use(cookieParser());
 app.use('/api', authRoutes);
 app.use('/api',addContact);
 app.use('/api',conversationRouter);
-
-app.get("/",(req,res)=>{
-     res.json({succes:"server started successfully"})
-})
 
 // Socket.io handling
 socketHandler(io);
