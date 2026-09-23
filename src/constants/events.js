@@ -1,0 +1,26 @@
+module.exports = {
+  MESSAGE_SEND: 'message:send',
+  MESSAGE_NEW: 'message:new',
+  CONTACT_ADD: 'contact:add',
+  CONTACT_ADD_RESULT: 'contact:add:result',
+  CONTACT_UPDATED: 'contact:updated',
+  CHAT_OPEN: 'chat:open',
+  PRESENCE_CHANGED: 'presence:changed',
+
+  TYPING_START: 'typing:start',
+  TYPING_STOP: 'typing:stop',
+  TYPING_UPDATE: 'typing:update',
+
+  CALL_INITIATE: 'call:initiate',
+  CALL_INCOMING: 'call:incoming',
+  CALL_ACCEPT: 'call:accept',
+  CALL_ACCEPTED: 'call:accepted',
+  CALL_REJECT: 'call:reject',
+  CALL_REJECTED: 'call:rejected',
+  CALL_CANCEL: 'call:cancel',
+  CALL_CANCELLED: 'call:cancelled',
+  CALL_BUSY: 'call:busy',
+  CALL_END: 'call:end',
+  CALL_ENDED: 'call:ended',
+  CALL_SIGNAL: 'call:signal',
+};
