@@ -1,6 +1,7 @@
 const User = require('../../models/user.model');
 const presenceService = require('../../services/presence.service');
 const contactService = require('../../services/contact.service');
+const activeChatService = require('../../services/activeChat.service');
 const events = require('../../constants/events');
 
 // Tracks a single connected socket's presence and lets that user's contacts
@@ -26,6 +27,7 @@ const registerPresenceHandlers = (io, socket) => {
 
     // Only announce "offline" once every tab/device for this user has gone.
     if (!presenceService.isOnline(phoneNumber)) {
+      activeChatService.clearActive(phoneNumber);
       try {
         await User.updateOne({ phoneNumber }, { lastSeen: new Date() });
         await broadcastPresence(false);

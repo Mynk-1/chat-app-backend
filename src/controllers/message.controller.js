@@ -1,6 +1,7 @@
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
 const messageService = require('../services/message.service');
+const groupService = require('../services/group.service');
 
 const sendMessage = asyncHandler(async (req, res) => {
   const { recipient, content } = req.body;
@@ -36,4 +37,22 @@ const markRead = asyncHandler(async (req, res) => {
   res.json({ success: true });
 });
 
-module.exports = { sendMessage, getMessages, markRead };
+const getGroupMessages = asyncHandler(async (req, res) => {
+  const { groupId } = req.params;
+  const { before, limit } = req.query;
+
+  const messages = await messageService.getGroupMessages(groupId, {
+    before,
+    limit: limit ? Number(limit) : undefined,
+  });
+
+  res.json({ success: true, messages });
+});
+
+const markGroupRead = asyncHandler(async (req, res) => {
+  const { groupId } = req.params;
+  await groupService.markGroupRead(req.user.phoneNumber, groupId);
+  res.json({ success: true });
+});
+
+module.exports = { sendMessage, getMessages, markRead, getGroupMessages, markGroupRead };

@@ -1,10 +1,9 @@
 module.exports = {
   MESSAGE_SEND: 'message:send',
   MESSAGE_NEW: 'message:new',
-  CONTACT_ADD: 'contact:add',
-  CONTACT_ADD_RESULT: 'contact:add:result',
-  CONTACT_UPDATED: 'contact:updated',
+  CHATS_UPDATED: 'chats:updated',
   CHAT_OPEN: 'chat:open',
+  CHAT_CLOSE: 'chat:close',
   PRESENCE_CHANGED: 'presence:changed',
 
   TYPING_START: 'typing:start',

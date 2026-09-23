@@ -4,7 +4,8 @@ const authenticate = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
-router.post('/login', authController.loginOrRegister);
+router.post('/send-otp', authController.sendOtp);
+router.post('/verify-otp', authController.verifyOtp);
 router.post('/logout', authController.logout);
 router.get('/me', authenticate, authController.getMe);
 

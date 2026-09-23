@@ -1,0 +1,52 @@
+MAYANK KATARIA
++91 7060067719 | mayankkataria1628@gmail.com | linkedin.com/in/mayank-kataria | github.com/Mynk-1
+
+
+EDUCATION
+
+College of Engineering and Technology                                    Udaipur, Rajasthan
+Bachelor of Technology in Electronics and Communication Engineering            2021 - 2025
+
+
+EXPERIENCE
+
+Software Engineer Intern                                              Feb 2026 - May 2026
+SparxIT Solutions
+- Developed features for a microservices-based multi-vendor eCommerce platform built on a scalable, modular architecture.
+- Built responsive frontends with Next.js and integrated them with Node.js, Express.js, and MongoDB backend services.
+- Implemented asynchronous service-to-service communication with RabbitMQ, decoupling workloads and improving reliability.
+- Instrumented services with Winston and Morgan for structured logging and request monitoring, speeding up production debugging.
+- Designed and consumed REST APIs and partnered with cross-functional teams to optimize performance and service integration.
+
+Full Stack Intern                                                     Jul 2025 - Dec 2025
+Modern Tech Creations
+- Developed a Restaurant ERP system that streamlined daily operations and improved workflow efficiency for staff.
+- Built core modules including Menu Management and Billing using React.js, Node.js, Express.js, and MongoDB.
+- Designed a responsive, modern user interface with Tailwind CSS and Shadcn/UI for a consistent experience across devices.
+- Configured CI/CD pipelines with GitHub Actions to automate builds and deployments, reducing manual release effort.
+
+
+PROJECTS
+
+Multi-Tenant E-Commerce SaaS | Next.js, TypeScript, Node.js, Express, MongoDB, Razorpay
+                                                                      Jun 2026 - Present
+- Building a SaaS platform that onboards merchants and gives each one a customer-facing storefront plus a 20+ module admin dashboard covering catalog, inventory, orders, payments, promotions, and analytics.
+- Designed inventory as the single source of truth across multiple warehouses with no cached stock counts; availability is computed live and a reason-coded activation state machine keeps rows consistent through product, variant, and warehouse delete, restore, and pause cascades.
+- Implemented reservation-based checkout with idempotency keys, cart snapshot reconciliation, and transactional stock and movement writes to prevent overselling and duplicate orders on client retries.
+- Built policy-driven RBAC over JWT access and refresh sessions, a transactional outbox for reliable event delivery, and lease-based leader election so scheduled jobs run exactly once across multiple instances.
+- Integrated Razorpay payments, GST-compliant tax splitting, refunds and returns, discounts, gift cards, and wallets, plus a Gemini-powered product enrichment flow that generates catalog content using structured JSON output grounded to real categories.
+
+ChatConnect | React.js, Node.js, Express.js, MongoDB, Socket.IO, WebRTC, JWT
+- Built a full-stack real-time messaging platform with one-on-one and group chats, using Socket.IO for live delivery, typing indicators, and read/unread state that accurately reflects whether a recipient has the conversation open.
+- Implemented peer-to-peer WebRTC audio and video calling with a custom Socket.IO signaling layer covering the full call lifecycle - ringing, accept/reject, busy/missed detection, and call history logging.
+- Designed OTP-based phone authentication with httpOnly JWT cookie sessions and a WhatsApp-style contact model that creates relationships implicitly on first message rather than a manual add step.
+- Structured the backend into a layered routes/controllers/services architecture and virtualized list rendering on the client for consistent performance as chat and message volume grows.
+
+
+TECHNICAL SKILLS
+
+Languages: JavaScript, TypeScript, C++, SQL, HTML/CSS
+Frameworks: React.js, Next.js, Node.js, Express.js, Redux Toolkit, Tailwind CSS, Shadcn/UI, Socket.IO
+Databases & Messaging: MongoDB, Mongoose, PostgreSQL, MySQL, Redis, RabbitMQ, Apache Kafka
+Developer Tools: Git, GitHub Actions (CI/CD), Docker, Vercel, Postman, VS Code
+Concepts: REST API Design, Microservices, Multi-Tenant SaaS, JWT Authentication, RBAC, Event-Driven Architecture, OOP, Data Structures and Algorithms, Agile

@@ -1,10 +1,10 @@
 const express = require('express');
-const contactController = require('../controllers/contact.controller');
+const chatController = require('../controllers/chat.controller');
 const authenticate = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
 router.use(authenticate);
-router.patch('/:contactNumber', contactController.updateContactProfile);
+router.get('/', chatController.getChats);
 
 module.exports = router;

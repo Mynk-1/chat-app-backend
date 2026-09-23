@@ -7,7 +7,7 @@ for (const key of required) {
   }
 }
 
-const defaultOrigins = 'https://chat-app-1zlj.onrender.com,http://localhost:3000';
+const defaultOrigins = 'https://store.teststore.fun';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -20,4 +20,8 @@ module.exports = {
   clientOrigins: (process.env.CLIENT_ORIGIN || defaultOrigins).split(',').map((s) => s.trim()),
   cookieName: 'token',
   cookieMaxAgeMs: (Number(process.env.COOKIE_MAX_AGE_DAYS) || 7) * 24 * 60 * 60 * 1000,
+  // Dev-only stand-in for a real SMS OTP provider — no SMS is actually sent,
+  // every phone number accepts this fixed code. Swap for a real provider
+  // integration before shipping to real users.
+  otpStaticCode: process.env.OTP_STATIC_CODE || '123456',
 };

@@ -1,5 +1,4 @@
 const ContactList = require('../models/contactList.model');
-const User = require('../models/user.model');
 const ApiError = require('../utils/ApiError');
 const presenceService = require('./presence.service');
 const AVATAR_COLORS = require('../constants/avatarColors');
@@ -56,30 +55,13 @@ const addSide = async (ownerNum, otherNum) => {
   return result.modifiedCount > 0;
 };
 
-const addContact = async (ownerNumber, contactNumber) => {
-  if (ownerNumber === contactNumber) {
-    throw new ApiError(400, 'You cannot add yourself as a contact');
-  }
-
-  const [owner, contactUser] = await Promise.all([
-    User.findOne({ phoneNumber: ownerNumber }),
-    User.findOne({ phoneNumber: contactNumber }),
-  ]);
-
-  if (!owner || !contactUser) {
-    throw new ApiError(404, 'User not found');
-  }
-
-  const [ownerSideAdded, contactSideAdded] = await Promise.all([
-    addSide(ownerNumber, contactNumber),
-    addSide(contactNumber, ownerNumber),
-  ]);
-
-  if (!ownerSideAdded && !contactSideAdded) {
-    throw new ApiError(400, 'Contact already exists');
-  }
-
-  return { ownerNumber, contactNumber };
+// Silent, idempotent — called automatically the first time two numbers
+// message each other (see message.service.js), replacing the old explicit
+// "add contact" step. No error if it already exists; that's the expected
+// steady state after the first message.
+const ensureContactRelation = async (ownerNumber, otherNumber) => {
+  if (ownerNumber === otherNumber) return;
+  await addSide(ownerNumber, otherNumber);
 };
 
 // Atomic preview update — replaces the old find-mutate-save pattern, which
@@ -139,7 +121,7 @@ const updateContactProfile = async (ownerNumber, contactNumber, { nickname, avat
 module.exports = {
   getOwnersWhoHaveContact,
   getContactList,
-  addContact,
+  ensureContactRelation,
   updateContactPreview,
   markConversationRead,
   updateContactProfile,

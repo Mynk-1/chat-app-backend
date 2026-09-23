@@ -4,13 +4,23 @@ const authService = require('../services/auth.service');
 const { cookieName } = require('../config/env');
 const { loginCookieOptions, authCookieOptions } = require('../utils/cookieOptions');
 
-const loginOrRegister = asyncHandler(async (req, res) => {
+const sendOtp = asyncHandler(async (req, res) => {
   const { phoneNumber } = req.body;
   if (!phoneNumber) {
     throw new ApiError(400, 'Phone number is required');
   }
 
-  const { user, token, isNewUser } = await authService.loginOrRegister(phoneNumber);
+  await authService.sendOtp(phoneNumber);
+  res.json({ success: true, message: 'OTP sent' });
+});
+
+const verifyOtp = asyncHandler(async (req, res) => {
+  const { phoneNumber, otp } = req.body;
+  if (!phoneNumber || !otp) {
+    throw new ApiError(400, 'Phone number and OTP are required');
+  }
+
+  const { user, token, isNewUser } = await authService.verifyOtp(phoneNumber, otp);
 
   // The token is only ever set as an httpOnly cookie — it's never put in the
   // response body, so client-side JS (and any XSS payload) has no access to it.
@@ -33,4 +43,4 @@ const getMe = asyncHandler(async (req, res) => {
   res.json({ success: true, user: req.user });
 });
 
-module.exports = { loginOrRegister, logout, getMe };
+module.exports = { sendOtp, verifyOtp, logout, getMe };
